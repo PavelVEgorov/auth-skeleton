@@ -9,5 +9,5 @@
 
 ## Какие темы полезно разобрать
 
-* (Bcrypt)[https://github.com/kelektiv/node.bcrypt.js]
-* (Constraint validation)[https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5/Constraint_validation]
+* [Bcrypt](https://github.com/kelektiv/node.bcrypt.js)
+* [Constraint validation](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5/Constraint_validation)
