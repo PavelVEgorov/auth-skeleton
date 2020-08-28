@@ -14,6 +14,7 @@ const app = express();
 const FileStore = sessionFileStore(session);
 
 app.set('view engine', 'hbs');
+// Запоминаем название куки для сессий
 app.set('session cookie name', 'sid');
 
 app.use(express.static('public'));
