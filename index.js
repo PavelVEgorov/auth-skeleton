@@ -44,4 +44,5 @@ app.use('/private', privateRouter);
 app.use(notFoundMiddleware);
 app.use(errorMiddleware);
 
-app.listen(process.env.PORT ?? 3000);
+const port = process.env.PORT ?? 3000;
+app.listen(port, () => {console.log('Server started at http://localhost:%s/', port)});

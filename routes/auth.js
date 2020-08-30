@@ -61,7 +61,8 @@ router
     const { username, password } = req.body;
     try {
       // Мы не храним пароль в БД, только его хэш
-      const hashedPassword = await bcrypt.hash(password, process.env.SALT_ROUNDS ?? 10);
+      const salt = Number(process.env.SALT_ROUNDS) ?? 10;
+      const hashedPassword = await bcrypt.hash(password, salt);
       const user = await User.create({
         username,
         password: hashedPassword,
@@ -69,6 +70,7 @@ router
       req.session.user = serializeUser(user);
     } catch (err) {
       logger.error(err);
+      console.log('err : ', err.message);
       return failAuth(res);
     }
     return res.end();
