@@ -62,8 +62,8 @@ router
     const { username, password, email } = req.body;
     try {
       // Мы не храним пароль в БД, только его хэш
-      const salt = Number(process.env.SALT_ROUNDS) ?? 10;
-      const hashedPassword = await bcrypt.hash(password, salt);
+      const saltRounds = Number(process.env.SALT_ROUNDS ?? 10);
+      const hashedPassword = await bcrypt.hash(password, saltRounds);
       const user = await User.create({
         username,
         password: hashedPassword,
