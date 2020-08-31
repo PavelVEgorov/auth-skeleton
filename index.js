@@ -10,6 +10,7 @@ import userMiddleware from './middlewares/user.js';
 import notFoundMiddleware from './middlewares/notfound.js';
 import errorMiddleware from './middlewares/error.js';
 
+const logger = console;
 const app = express();
 const FileStore = sessionFileStore(session);
 
@@ -45,4 +46,6 @@ app.use(notFoundMiddleware);
 app.use(errorMiddleware);
 
 const port = process.env.PORT ?? 3000;
-app.listen(port, () => {console.log('Server started at http://localhost:%s/', port)});
+app.listen(port, () => {
+  logger.log('Сервер запущен: http://localhost:%s/', port);
+});

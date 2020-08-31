@@ -15,6 +15,7 @@ function failAuth(res) {
 
 /**
  * Подготавливает пользователя для записи в сессию
+ * Мы не хотим хранить пароль в сессии, поэтому извлекаем только нужные данные
  * @param {object} user Объект пользователя из БД
  */
 function serializeUser(user) {
@@ -58,7 +59,7 @@ router
   .get((req, res) => res.render('signup'))
   // Регистрация пользователя
   .post(async (req, res) => {
-    const { username, password } = req.body;
+    const { username, password, email } = req.body;
     try {
       // Мы не храним пароль в БД, только его хэш
       const salt = Number(process.env.SALT_ROUNDS) ?? 10;
@@ -66,11 +67,11 @@ router
       const user = await User.create({
         username,
         password: hashedPassword,
+        email,
       });
       req.session.user = serializeUser(user);
     } catch (err) {
       logger.error(err);
-      console.log('err : ', err.message);
       return failAuth(res);
     }
     return res.end();

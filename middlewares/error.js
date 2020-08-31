@@ -1,4 +1,6 @@
+const logger = console;
+
 export default (err, req, res, next) => {
-  console.error(err);
+  logger.error(err);
   res.status(500).render('error');
 };

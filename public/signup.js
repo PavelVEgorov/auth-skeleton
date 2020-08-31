@@ -2,7 +2,7 @@
  * Выдает ошибку при неверной регистрации
  * @param {HTMLFormElement} signupForm Форма регистрации
  */
-function failsignup(signupForm) {
+function failSignup(signupForm) {
   signupForm.username.setCustomValidity('Вероятно, что вы уже зарегистрированы.');
   signupForm.username.reportValidity();
 }
@@ -24,10 +24,10 @@ document.forms.signupForm?.addEventListener('submit', async (event) => {
       }),
     });
   } catch (err) {
-    return failsignup(event.target);
+    return failSignup(event.target);
   }
   if (response.status !== 200) {
-    return failsignup(event.target);
+    return failSignup(event.target);
   }
   return window.location.assign('/private');
 });
