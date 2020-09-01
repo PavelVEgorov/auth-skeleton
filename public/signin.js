@@ -31,6 +31,7 @@ document.forms.signinForm?.addEventListener('submit', async (event) => {
   return window.location.assign('/private');
 });
 
+// Очищаем кастомные сообщения об ошибках при новом вводе
 if (document.forms.signinForm) {
   [
     document.forms.signinForm.username,

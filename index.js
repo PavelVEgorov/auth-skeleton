@@ -47,5 +47,5 @@ app.use(errorMiddleware);
 
 const port = process.env.PORT ?? 3000;
 app.listen(port, () => {
-  logger.log('Сервер запущен: http://localhost:%s/', port);
+  logger.log('Сервер запущен. Порт:', port);
 });
