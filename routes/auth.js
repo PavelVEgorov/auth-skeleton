@@ -28,7 +28,7 @@ function serializeUser(user) {
 router
   .route('/signin')
   // Страница аутентификации пользователя
-  .get((req, res) => res.render('signin'))
+  .get((req, res) => res.render('signin', { isSignin: true }))
   // Аутентификация пользователя
   .post(async (req, res) => {
     const { username, password } = req.body;
@@ -56,7 +56,7 @@ router
 router
   .route('/signup')
   // Страница регистрации пользователя
-  .get((req, res) => res.render('signup'))
+  .get((req, res) => res.render('signup', { isSignup: true }))
   // Регистрация пользователя
   .post(async (req, res) => {
     const { username, password, email } = req.body;
