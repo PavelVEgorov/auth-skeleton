@@ -21,6 +21,7 @@ document.forms.signupForm?.addEventListener('submit', async (event) => {
         username: event.target.username.value,
         email: event.target.email.value,
         password: event.target.password.value,
+        role: +event.target.admin.checked
       }),
     });
   } catch (err) {

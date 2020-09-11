@@ -43,7 +43,7 @@ export const signin = async (req, res) => {
 };
 
 export const signup = async (req, res) => {
-  const { username, password } = req.body;
+  const { username, password, role } = req.body;
   try {
     // Мы не храним пароль в БД, только его хэш
     const salt = Number(process.env.SALT_ROUNDS) ?? 10;
@@ -51,13 +51,13 @@ export const signup = async (req, res) => {
     const user = await User.create({
       username,
       password: hashedPassword,
+      role
     });
     req.session.user = serializeUser(user);
   } catch (err) {
     console.error(err);
     return failAuth(res);
   }
-  console.log('res end');
   return res.end();
 };
 
