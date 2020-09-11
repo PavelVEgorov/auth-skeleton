@@ -13,14 +13,17 @@ const UserSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
-    minlength: 8,
+    minlength: 6,
   },
   // Email
   email: {
     type: String,
-    required: true,
     minlength: 3,
     match: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+  },
+  role: {
+    type: Number,
+    default: 0,
   },
 });
 

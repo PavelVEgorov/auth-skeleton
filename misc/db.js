@@ -1,7 +1,31 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
-export default mongoose.connect(process.env.DB_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
-});
+export default () => {
+  mongoose.connect(process.env.DB_URL, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+  });
+
+  mongoose.connection.on("connected", function () {
+    console.log("Mongoose default connection open to " + process.env.DB_URL);
+  });
+  // If the connection throws an error
+  mongoose.connection.on("error", function (err) {
+    console.log("Mongoose default connection error: " + err.message);
+  });
+  // When the connection is disconnected
+  mongoose.connection.on("disconnected", function () {
+    console.log("Mongoose default connection disconnected");
+  });
+  // If the Node process ends, close the Mongoose connection
+  process.on("SIGINT", function () {
+    mongoose.connection.close(function () {
+      console.log(
+        "Mongoose default connection disconnected through app termination"
+      );
+      process.exit(0);
+    });
+  });
+};
