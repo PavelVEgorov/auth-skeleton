@@ -41,7 +41,7 @@ app.use(session({
   cookie: {
     // В продакшне нужно "secure: true" для HTTPS
     secure: process.env.NODE_ENV === 'production',
-    expires: 600000
+    maxAge: 600000
   },
 }));
 app.use(userMiddleware);
