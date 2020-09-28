@@ -17,6 +17,8 @@ const FileStore = sessionFileStore(session);
 app.set('view engine', 'hbs');
 // Запоминаем название куки для сессий
 app.set('session cookie name', 'sid');
+// Доверять первому прокси (для Heroku и прочих)
+app.set('trust proxy', 1);
 
 app.use(express.static('public'));
 app.use(express.json());
