@@ -1,27 +1,26 @@
-import express from 'express';
-import session from 'express-session';
-import sessionFileStore from 'session-file-store';
-import './misc/env.js';
-import './misc/db.js';
-import indexRouter from './routes/index.js';
-import authRouter from './routes/auth.js';
-import privateRouter from './routes/private.js';
-import userMiddleware from './middlewares/user.js';
-import notFoundMiddleware from './middlewares/notfound.js';
-import errorMiddleware from './middlewares/error.js';
+require('dotenv').config()
+const express = require('express')
+const session = require('express-session')
+const sessionFileStore = require('session-file-store')
+const indexRouter = require('./routes/index.js')
+const authRouter = require('./routes/auth.js')
+const privateRouter = require('./routes/private.js')
+const userMiddleware = require('./middlewares/user.js')
+const notFoundMiddleware = require('./middlewares/notfound.js')
+const errorMiddleware = require('./middlewares/error.js')
 
-const logger = console;
-const app = express();
-const FileStore = sessionFileStore(session);
+const logger = console
+const app = express()
+const FileStore = sessionFileStore(session)
 
-app.set('view engine', 'hbs');
+app.set('view engine', 'hbs')
 // Запоминаем название куки для сессий
-app.set('session cookie name', 'sid');
+app.set('session cookie name', 'sid')
 // Доверять первому прокси (для Heroku и прочих)
-app.set('trust proxy', 1);
+app.set('trust proxy', 1)
 
-app.use(express.static('public'));
-app.use(express.json());
+app.use(express.static('public'))
+app.use(express.json())
 app.use(session({
   name: app.get('session cookie name'),
   secret: process.env.SESSION_SECRET,
@@ -37,17 +36,17 @@ app.use(session({
     // В продакшне нужно "secure: true" для HTTPS
     secure: process.env.NODE_ENV === 'production',
   },
-}));
-app.use(userMiddleware);
+}))
+app.use(userMiddleware)
 
-app.use(indexRouter);
-app.use(authRouter);
-app.use('/private', privateRouter);
+app.use(indexRouter)
+app.use(authRouter)
+app.use('/private', privateRouter)
 
-app.use(notFoundMiddleware);
-app.use(errorMiddleware);
+app.use(notFoundMiddleware)
+app.use(errorMiddleware)
 
-const port = process.env.PORT ?? 3000;
+const port = process.env.PORT ?? 3000
 app.listen(port, () => {
-  logger.log('Сервер запущен. Порт:', port);
-});
+  logger.log('Сервер запущен. Порт:', port)
+})

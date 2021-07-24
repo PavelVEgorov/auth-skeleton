@@ -1,6 +1,6 @@
-const logger = console;
+const logger = console
 
-export default (err, req, res, next) => {
-  logger.error(err);
-  res.status(500).render('error');
-};
+module.exports = (err, req, res, next) => {
+  logger.error(err)
+  res.status(500).render('error')
+}

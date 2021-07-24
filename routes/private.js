@@ -1,8 +1,8 @@
-import express from 'express';
-import authMiddleware from '../middlewares/auth.js';
+const express = require('express')
+const authMiddleware = require('../middlewares/auth.js')
 
-const router = express.Router();
+const router = express.Router()
 
-router.get('/', authMiddleware, (req, res) => res.render('private'));
+router.get('/', authMiddleware, (req, res) => res.render('private'))
 
-export default router;
+module.exports = router

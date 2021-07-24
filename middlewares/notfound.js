@@ -1,3 +1,3 @@
-export default (req, res, next) => {
-  res.status(404).render('notfound');
-};
+module.exports = (req, res, next) => {
+  res.status(404).render('notfound')
+}

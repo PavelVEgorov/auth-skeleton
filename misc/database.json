@@ -1,0 +1,29 @@
+{
+  "development": {
+    "username": "auth_skeleton_user",
+    "password": "123",
+    "database": "auth_skeleton",
+    "host": "127.0.0.1",
+    "seederStorage": "sequelize",
+    "seederStorageTableName": "SequelizeData",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "auth_skeleton_user",
+    "password": "123",
+    "database": "auth_skeleton",
+    "host": "127.0.0.1",
+    "seederStorage": "sequelize",
+    "seederStorageTableName": "SequelizeData",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "auth_skeleton_user",
+    "password": "123",
+    "database": "auth_skeleton",
+    "host": "127.0.0.1",
+    "seederStorage": "sequelize",
+    "seederStorageTableName": "SequelizeData",
+    "dialect": "postgres"
+  }
+}
