@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js --ignore sessions",
+    "dev": "nodemon index.js --ext js,jsx --ignore sessions",
     "debug": "node --no-lazy --inspect-brk index.js"
   },
   "keywords": [],
